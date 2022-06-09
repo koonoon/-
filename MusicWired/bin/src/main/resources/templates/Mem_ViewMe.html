@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="kooky"/>
+	<meta name="description" content="Spring Boot Member View"/>
+	<meta name="date" content="2022.05.25">
+	<title>Spring Boot Member View</title>
+</head>
+<body>
+	<table>
+		<caption>내 정보</caption>
+		<tr>
+			<th>아이디</th>
+			<td th:text="${session.login.mId}"></td>
+		</tr>
+		
+		<tr>
+			<th>이름</th>
+			<td th:text="${session.login.mName}"></td>
+		</tr>
+		
+		<tr>
+			<th>이메일</th>
+			<td th:text="${session.login.mEmail}"></td>
+		</tr>
+		
+		<tr>
+			<th>성별</th>
+			<td th:text="${session.login.mGender}"></td>
+		</tr>
+		
+		<tr>
+			<th>구독</th>
+			<td th:text="${session.login.mSub}"></td>
+		</tr>
+		
+		<tr>
+			<th>구독자</th>
+			<td th:text="${session.login.mSuber}"></td>
+		</tr>
+		
+		<tr>
+			<th>프로필 사진</th>
+			<td><img th:src="@{/profile/{aa}(aa=${session.login.mProfileName})}" style="width:200px;"/></td>
+		</tr>
+		
+		<tr>
+		<td><a th:href="@{memberModiForm(mId=${session.login.mId})}" th:text="'수정'"></a></td>
+		<td><a th:href="@{memberDelete(mId=${session.login.mId})}" th:text="'삭제'"></a></td>
+		</tr>
+		
+		
+	</table>
+
+</body>
+</html>

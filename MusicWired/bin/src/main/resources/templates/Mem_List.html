@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<table>
+		<caption>회원목록</caption>
+		<tr>
+			<th>아이디</th>
+			<th>비밀번호</th>
+			<th>이름</th>
+			<th>이메일</th>
+			
+			<th>수정</th>
+			<th>삭제</th>
+		</tr>
+		<!-- 
+		<c:forEach var="data" items="idto">
+		
+		</c:forEach> -->
+		
+		<tr th:each="list : ${member}">
+			<td><a th:href="@{memberView(mId=${list.mId})}" th:text="${list.mId}"></a></td>
+			<td th:text="${list.mPw}"></td>
+			<td th:text="${list.mName}"></td>
+			<td th:text="${list.mEmail}"></td>
+			<td th:text="${list.mGender}"></td>
+			
+			
+			<td><a th:href="@{mDelete(mId=${list.mId})}" th:text="'삭제'"></a></td>
+		</tr>
+	</table>
+</body>
+</html>

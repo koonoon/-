@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.icia.musicwired.dao.MemberDAO">
+
+	<insert id="memberJoin" parameterType="member">
+		INSERT INTO MEMBER VALUES(#{mId}, #{mPw}, #{mName}, #{mGender}, #{mEmail}, 0, 0, #{mProfileName})
+	</insert>
+	
+	<select id="checkId" parameterType="String" resultType="String">
+		SELECT MID FROM MEMBER WHERE MID=#{mId}
+	</select>
+	
+	<select id="memLogin" parameterType="member" resultType="member">
+		SELECT * FROM MEMBER WHERE MID=#{mId} AND MPW=#{mPw}
+	</select>
+	
+	<select id="mEpw" parameterType="String" resultType="String">
+		SELECT MPW FROM MEMBER WHERE MID = #{mId}
+	</select>
+	
+	<select id="memberView" parameterType="String" resultType="member">
+		SELECT * FROM MEMBER WHERE MID = #{mId}
+	</select>
+	
+	<update id="memberModify" parameterType="member">
+		UPDATE MEMBER SET MPW=#{mPw}, MNAME=#{mName}, MGENDER=#{mGender}, MEMAIL=#{mEmail},
+		MPROFILENAME=#{mProfileName} WHERE MID=#{mId}
+	</update>
+	
+	<delete id="memberDelete" parameterType="String">
+		DELETE FROM MEMBER WHERE MID=#{mId}
+	</delete>
+	
+	<select id="memberList" resultType="member">
+		SELECT * FROM MEMBER ORDER BY MNAME
+	</select>
+</mapper>

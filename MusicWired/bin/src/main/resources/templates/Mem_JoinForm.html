@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="kooky"/>
+	<meta name="description" content="inputBoot index"/>
+	<title>Spring Boot Index</title>
+	<style>
+		th, td, table{
+			border : 1px solid black;
+			border-collapse : collapse;
+		}
+	</style>
+</head>
+<body>
+	<h1>회원가입</h1>
+	<form action="memberJoin" method="post" enctype="multipart/form-data">
+		아이디 : <input type="text" name="mId" id="mId" onkeyup="checkId()"/><br/>
+				<span id="confirmId"></span><br/>
+		비밀번호 : <input type="password" name="mPw" required maxlength="20" placeholder="비밀번호 입력"/><br/>
+		
+		이름 : <input type="text" name="mName" placeholder="이름 입력"/><br/>
+		성별 : <input type="radio" name="mGender" value="남"/>남
+			  <input type="radio" name="mGender" value="여"/>여<br/>
+		이메일 : <input type="email" name="mEmail" id="mEmail" placeholder="이메일 입력"/><br/>
+		프로필 : <input type="file" name="mProfile"/><br/>
+		<input type="submit" value="가입"/><br/>
+	</form>
+	
+	
+</body>
+<script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"></script>
+
+<script>
+function checkId(){
+	
+	var mId = document.getElementById('mId').value;
+	var confirmId = document.getElementById('confirmId');
+	
+	$.ajax({
+		type : "POST" ,
+		url : "checkId" ,
+		data : { "mId" : mId },
+		dataType : "text" ,
+		
+		success : function(msg){ 
+			if(msg=="OK"){
+				confirmId.style.color="#0000ff";
+				confirmId.innerHTML = "사용가능한 아이디";
+			} else{
+				confirmId.style.color="#ff0000";
+				confirmId.innerHTML = "사용중인 아이디";
+			}
+		},
+		error : function(){			
+			alert('checkId()함수 통신실패!');
+		}
+	});
+	
+}
+
+
+</script>
+</html>

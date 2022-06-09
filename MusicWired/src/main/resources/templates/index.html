@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="kooky"/>
+	<meta name="description" content="inputBoot index"/>
+	<title>Spring Boot Index</title>
+	<style>
+		th, td, table{
+			border : 1px solid black;
+			border-collapse : collapse;
+		}
+	</style>
+</head>
+<body>
+	<h1>Member Index</h1>
+	
+	
+	
+	<button th:if="${session.login eq null}" onclick="location.href='memberJoinForm'">회원가입</button>
+	<button th:if="${session.login eq null}" onclick="location.href='memberLogin'">로그인</button>
+	<button th:if="${session.login ne null}" onclick="location.href='memberLogout'">로그아웃</button>
+	<button th:if="${session.login ne null}" onclick="location.href='memberViewMe'">내정보</button>
+	
+	<div th:if='${session.login ne null}'>
+	<button th:if ="${session.login.mId == 'admin'}" onclick="location.href='memberList'">회원정보</button>
+	</div>
+	
+	<p th:if="${session.login ne null}" th:text="${session.login.mId}+'님 로그인 성공'"></p>
+	
+	
+</body>
+</html>

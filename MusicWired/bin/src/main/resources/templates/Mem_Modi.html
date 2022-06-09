@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="kooky"/>
+	<meta name="description" content="inputBoot index"/>
+	<title>Spring Boot ModiForm</title>
+	<style>
+		th, td, table{
+			border : 1px solid black;
+			border-collapse : collapse;
+		}
+	</style>
+</head>
+<body>
+	<h1>Member Index</h1>
+	<form action="memberModify" method="post" enctype="multipart/form-data">
+		아이디 : <input type="hidden" name="mId" th:value="${modi.mId}" th:text="${modi.mId}"/><br/>
+		비밀번호 : <input type="text" name="mPw" th:placeholder="${modi.mPw}"/><br/>
+		이름 : <input type="text" name="mName" th:placeholder="${modi.mName}"/><br/>
+		성별 : <input type="radio" name="mGender" value="남"/>남
+			<input type="radio" name="mGender" value="여"/>여<br/>
+		
+		이메일 : <input type="email" name="mEmail" th:placeholder="${modi.mEmail}"/><br/>
+		프로필 : <input type="file" name="mProfile"/><br/>
+		<input type="submit" value="수정" onclick="modify()"/><br/>
+	</form>
+
+
+<script>
+	function modify(){
+		alert("정보가 수정되었습니다.")
+	}
+</script>
+</body>
+</html>
